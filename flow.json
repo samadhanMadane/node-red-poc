@@ -7,72 +7,76 @@
         "info": ""
     },
     {
-        "id": "ccff1427.530588",
-        "type": "inject",
+        "id": "12b04592.66feda",
+        "type": "http in",
         "z": "6b60ed9b.f359e4",
         "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 230,
-        "y": 180,
+        "url": "/hello",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 120,
+        "y": 120,
         "wires": [
             [
-                "8b47e68f.bc9c48"
+                "e6cb425d.017ea"
             ]
         ]
     },
     {
-        "id": "116da08a.eeec0f",
-        "type": "debug",
+        "id": "28f66c0.d348f94",
+        "type": "change",
+        "z": "6b60ed9b.f359e4",
+        "name": "set headers",
+        "rules": [
+            {
+                "t": "set",
+                "p": "headers.content-type",
+                "pt": "msg",
+                "to": "application/json",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 530,
+        "y": 120,
+        "wires": [
+            [
+                "6c44ee42.d05ae"
+            ]
+        ]
+    },
+    {
+        "id": "6c44ee42.d05ae",
+        "type": "http response",
         "z": "6b60ed9b.f359e4",
         "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 620,
-        "y": 200,
+        "statusCode": "",
+        "headers": {},
+        "x": 730,
+        "y": 120,
         "wires": []
     },
     {
-        "id": "8b47e68f.bc9c48",
-        "type": "switch",
+        "id": "e6cb425d.017ea",
+        "type": "template",
         "z": "6b60ed9b.f359e4",
         "name": "",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 420,
-        "y": 200,
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "html",
+        "syntax": "plain",
+        "template": "<!DOCTYPE html>\n<html>\n    <head>\n        <link rel=\"stylesheet\" href=\"//stackpath.bootstrapcdn.com/bootswatch/4.5.2/slate/bootstrap.min.css\" integrity=\"sha384-8iuq0iaMHpnH2vSyvZMSIqQuUnQA7QM+f6srIdlgBrTSEyd//AWNMyEaSF2yPzNQ\" crossorigin=\"anonymous\">\n    </head>\n<body>\n    <div class=\"container\">\n        <div class=\"row\">\n            <h1>Bhim4Lending</h1>\n        </div>\n        <div class=\"row\">\n            <p>My first paragraph.</p>\n        </div>\n    </div>\n</body>\n</html>",
+        "output": "str",
+        "x": 320,
+        "y": 120,
         "wires": [
             [
-                "116da08a.eeec0f"
+                "28f66c0.d348f94"
             ]
         ]
     }
